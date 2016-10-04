@@ -134,7 +134,11 @@ namespace BVSeoSdkDotNet.Content.Loaders
             }
             catch (WebException e)
             {
-                Logger.Error(BVMessageUtil.getMessage("ERR0012"), e);
+                var response = e.Response as HttpWebResponse;
+                if (response == null || (response.StatusCode != HttpStatusCode.Forbidden && response.StatusCode != HttpStatusCode.NotFound))
+                {
+                    Logger.Error(BVMessageUtil.getMessage("ERR0012"), e);
+                }
                 throw new BVSdkException("ERR0012");
             }
             catch (Exception e)

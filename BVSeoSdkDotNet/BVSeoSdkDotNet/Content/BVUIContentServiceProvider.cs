@@ -348,7 +348,7 @@ namespace BVSeoSdkDotNet.Content
             }
             catch (BVSdkException e)
             {
-                Logger.Error(e.getMessage(), e);
+                //Logger.Error(e.getMessage(), e);
                 _message.Append(e.getMessage());
             }
             
