@@ -90,11 +90,6 @@ namespace BVSeoSdkDotNet.Content.Loaders
         ///     when loading content via HTTP.
         /// </param>
 
-        static HttpContentLoader()
-        {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-        }
-
         public HttpContentLoader(BVConfiguration config, string userAgent)
         {
             ConnectionTimeout = int.Parse(config.getProperty(BVClientConfig.CONNECT_TIMEOUT));
@@ -121,6 +116,8 @@ namespace BVSeoSdkDotNet.Content.Loaders
                     var proxy = new WebProxy(ProxyHost, ProxyPort);
                     httpRequest.Proxy = proxy;
                 }
+
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
                 var webResponse = (HttpWebResponse) httpRequest.GetResponse();
                 using (var reader = new StreamReader(webResponse.GetResponseStream(), Encoding))
