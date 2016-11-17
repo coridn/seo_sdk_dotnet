@@ -89,6 +89,12 @@ namespace BVSeoSdkDotNet.Content.Loaders
         ///     Browser and system details to be forwarded as the <see cref="HttpRequestHeader.UserAgent" />
         ///     when loading content via HTTP.
         /// </param>
+
+        static HttpContentLoader()
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+        }
+
         public HttpContentLoader(BVConfiguration config, string userAgent)
         {
             ConnectionTimeout = int.Parse(config.getProperty(BVClientConfig.CONNECT_TIMEOUT));

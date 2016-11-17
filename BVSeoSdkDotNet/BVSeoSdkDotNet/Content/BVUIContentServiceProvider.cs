@@ -264,11 +264,6 @@ namespace BVSeoSdkDotNet.Content
                 Logger.Error(e.Message, e);
                 _message.Append(e.Message);
             }
-            catch (ExecutionEngineException e)
-            {
-                Logger.Error(e.Message, e);
-                _message.Append(e.Message);
-            }
             catch (TimeoutException e)
             {
                 var errorCode = isWebCrawler ? "ERR0026" : "ERR0018";

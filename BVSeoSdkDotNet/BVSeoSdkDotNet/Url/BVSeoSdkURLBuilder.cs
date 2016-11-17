@@ -287,8 +287,6 @@ namespace BVSeoSdkDotNet.Url
                 _logger.Error(BVMessageUtil.getMessage("ERR0027"), e);
                 throw new BVSdkException("ERR0027");
             }
-
-            return null;
         }
 
         // bvpage is present here to have back compatability support if some sites
